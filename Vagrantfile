@@ -1,10 +1,10 @@
 Vagrant.configure("2") do |config|
-  config.vm.define "dapps" do |dapps|
-    dapps.vm.box = "ubuntu/xenial64"
+  config.vm.define "devVM" do |dapps|
+    dapps.vm.box = "ubuntu/focal64"
     # Change from "~/DAPPS" to an existing, and non-encrypted, folder on your host if the mount fails
     dapps.vm.synced_folder "~/DAPPS", "/home/vagrant/DAPPS", nfs: false, nfs_udp: false, create: true
     dapps.vm.network "private_network", type: "dhcp"
-    
+
     # Webpack server
     dapps.vm.network :forwarded_port, guest: 8000, host: 8000, host_ip: "127.0.0.1"
 
@@ -24,21 +24,22 @@ Vagrant.configure("2") do |config|
         cpus = `sysctl -n hw.ncpu`.to_i
         # sysctl returns Bytes and we need to convert to MB
         # mem = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / 2
-        mem = 3572
+        mem = 4096
       elsif host =~ /linux/
-        cpus = `nproc`.to_i
+        #cpus = `nproc`.to_i
+        cpus = 1
         # meminfo shows KB and we need to convert to MB
         # mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
-        mem = 3572
+        mem = 4096
       else # sorry Windows folks, I can't help you
         cpus = 2
-        mem = 3572
+        mem = 4096
       end
 
       v.customize ["modifyvm", :id, "--memory", mem]
       v.customize ["modifyvm", :id, "--cpus", cpus]
       v.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-      v.customize ["modifyvm", :id, "--uartmode1", "file", File.join(Dir.pwd, "ubuntu-xenial-16.04-cloudimg-console.log")]
+      v.customize ["modifyvm", :id, "--uartmode1", "file", File.join(Dir.pwd, "ubuntu-focal-20.04-cloudimg-console.log")]
       v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000]
     end
 
