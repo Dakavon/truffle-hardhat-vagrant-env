@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
         # mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
         mem = 4096
       else # sorry Windows folks, I can't help you
-        cpus = 2
+        cpus = 1
         mem = 4096
       end
 
