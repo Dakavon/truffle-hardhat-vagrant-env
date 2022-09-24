@@ -1,11 +1,15 @@
 # VM for Ethereum smart contract development
-on the basis of Ubuntu 20.04. with pre-installed software e.g. Truffle + Hardhat to get started straight away.
+on the basis of Ubuntu 22.04 LTS ("Jammy Jellyfish") with pre-installed software e.g. Truffle ~+ Hardhat~ (\*) to get started straight away.
+
+(\* Hardhat needs a local installation within a project.)
 
 See [bootstrap.sh](bootstrap.sh) for software versions.
 
 ## Get started
+
 ### Download Vagrant for your system
 :arrow_right: https://www.vagrantup.com/downloads
+
 
 ### Prepare development environment
 
@@ -14,7 +18,7 @@ See [bootstrap.sh](bootstrap.sh) for software versions.
     $ git clone git@github.com:Dakavon/truffle-hardhat-vagrant-env.git
     ```
 
-    2. Go into the download folder and prepare development environment with
+2. Go into the download folder and prepare development environment with
     ```sh
     $ cd truffle-hardhat-vagrant-env
     $ vagrant up
@@ -27,9 +31,13 @@ See [bootstrap.sh](bootstrap.sh) for software versions.
     $ vagrant halt
     ```
 
+
 ### Run development environment
 
-1. If you haven't already create a DAPPS folder within your users home folder
+1. If you haven't already create a DAPPS folder within your users home folder, e.g. vua terminal
+    ```sh
+    $ mkdir ~/DAPPS
+    ```
 
 2. Open VM installation folder in a terminal
 
@@ -43,12 +51,26 @@ See [bootstrap.sh](bootstrap.sh) for software versions.
     vagrant@devVM:~$  cd ~/DAPPS/
     ```
 
-5. Clone `INSERT_REPOSITORY` to your DAPPS folder (likely from outside the VM due to public-key authentication)
+5. Clone project from `_REPOSITORY_` to your DAPPS folder (likely from outside the VM due to public-key authentication)
     ```sh
-    $ git clone git@github.com:INSERT_REPOSITORY
+    $ git clone git@github.com:_REPOSITORY_
     ```
 
-6. Go to project folder inside the VM and install dependencies via
+6. Go to `_PROJECT_` folder inside the VM and install dependencies via
     ```sh
-    vagrant@devVM:~/DAPPS$  cd INSERT_REPOSITORY && npm install
+    vagrant@devVM:~/DAPPS$  cd _PROJECT_ && npm install
+    ```
+
+7. Use hardhat within project through local installation
+    ```sh
+    vagrant@devVM:~/DAPPS/_PROJECT_$   npm install --save-dev hardhat
+    ```
+
+
+### Delete development environment
+
+1. Go to the download folder and delete development environment with
+    ```sh
+    $ cd truffle-hardhat-vagrant-env
+    $ vagrant destroy
     ```

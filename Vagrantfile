@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.define "devVM" do |dapps|
-    dapps.vm.box = "ubuntu/focal64"
+    dapps.vm.box = "ubuntu/jammy64"
     # Change from "~/DAPPS" to an existing, and non-encrypted, folder on your host if the mount fails
     dapps.vm.synced_folder "~/DAPPS", "/home/vagrant/DAPPS", nfs: false, nfs_udp: false, create: true
     dapps.vm.network "private_network", type: "dhcp"
@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--memory", mem]
       v.customize ["modifyvm", :id, "--cpus", cpus]
       v.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-      v.customize ["modifyvm", :id, "--uartmode1", "file", File.join(Dir.pwd, "ubuntu-focal-20.04-cloudimg-console.log")]
+      v.customize ["modifyvm", :id, "--uartmode1", "file", File.join(Dir.pwd, "ubuntu-jammy-22.04-cloudimg-console.log")]
       v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000]
     end
 
