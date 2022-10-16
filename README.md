@@ -6,9 +6,13 @@ on the basis of Ubuntu 22.04 LTS ("Jammy Jellyfish") with pre-installed software
 See [bootstrap.sh](bootstrap.sh) for software versions.
 
 ## Get started
-
-### Download Vagrant for your system
+### Download and install Vagrant for your system
 :arrow_right: https://www.vagrantup.com/downloads
+### Download and install Virtualbox for your system (because Vagrant relies on "providers")
+:arrow_right: https://www.oracle.com/virtualization/technologies/vm/downloads/virtualbox-downloads.html (or https://download.virtualbox.org/virtualbox)
+
+        $ sudo dpkg -i virtualbox-_VERSION_~Ubuntu~_PLATFORM.deb
+        $ sudo apt-get install --fix-broken install
 
 
 ### Prepare development environment
