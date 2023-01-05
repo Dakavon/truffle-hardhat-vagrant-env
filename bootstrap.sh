@@ -16,7 +16,7 @@ apt-get install -y git python3 dstat ntp nodejs build-essential ethereum solc jq
 service ntp reload
 
 # For custom build config
-npm install -g npm@8.19
+npm install -g npm@9.2
 
 npm install -g node-gyp
 npm install -g truffle@5.5
