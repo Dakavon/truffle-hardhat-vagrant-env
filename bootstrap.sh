@@ -22,11 +22,20 @@ npm install -g node-gyp
 npm install -g truffle@5.5
 npm install -g ganache@7
 
-# # To get a local Web server from your build folder:
-# # php -S 0.0.0.0:8000
+# To get a local Web server from your build folder:
+#   php -S 0.0.0.0:8000
 apt-get install -y php-cli
-# # or python -m SimpleHTTPServer 8000
+# or python -m SimpleHTTPServer 8000
 apt-get install -y python3-pip python3-dev libssl-dev
+
+# Be prepared for dockage images
+apt-get install ca-certificates curl gnupg lsb-release
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update
+apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 #change hostname in /etc/hosts & /etc/hostname
 oldHostname=$(cat /etc/hostname)
