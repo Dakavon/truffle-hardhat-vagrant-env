@@ -16,11 +16,13 @@ apt-get install -y git python3 dstat ntp nodejs build-essential ethereum solc jq
 service ntp reload
 
 # For custom build config
-npm install -g npm@9.2
+npm install -g npm@9.8
 
 npm install -g node-gyp
-npm install -g truffle@5.5
-npm install -g ganache@7
+npm install -g truffle@5.11
+npm install -g ganache@7.9
+
+npm install -g nodemon@3.x
 
 # # To get a local Web server from your build folder:
 # # php -S 0.0.0.0:8000

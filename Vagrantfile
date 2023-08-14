@@ -5,8 +5,14 @@ Vagrant.configure("2") do |config|
     dapps.vm.synced_folder "~/DAPPS", "/home/vagrant/DAPPS", nfs: false, nfs_udp: false, create: true
     dapps.vm.network "private_network", type: "dhcp"
 
-    # Webpack server
+    # Webpack / Next.js server
     dapps.vm.network :forwarded_port, guest: 8000, host: 8000, host_ip: "127.0.0.1"
+    dapps.vm.network :forwarded_port, guest: 3000, host: 3000, host_ip: "127.0.0.1"
+    
+    # Vite
+    dapps.vm.network :forwarded_port, guest: 5173, host: 5173, host_ip: "127.0.0.1"
+    # Nodemon
+    dapps.vm.network :forwarded_port, guest: 3042, host: 3042, host_ip: "127.0.0.1"
 
     # Eth node
     dapps.vm.network :forwarded_port, guest: 8545, host: 8545, host_ip: "127.0.0.1"
@@ -27,12 +33,12 @@ Vagrant.configure("2") do |config|
         mem = 4096
       elsif host =~ /linux/
         #cpus = `nproc`.to_i
-        cpus = 1
+        cpus = 2
         # meminfo shows KB and we need to convert to MB
         # mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
         mem = 4096
       else # sorry Windows folks, I can't help you
-        cpus = 1
+        cpus = 2
         mem = 4096
       end
 
